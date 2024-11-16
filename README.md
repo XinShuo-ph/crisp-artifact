@@ -22,8 +22,15 @@ All traces evaluated in the paper are provided. However, by default, only SPL pa
 After all software dependencies are met, please run the following to install the remaining dependencies:
 
 ```bash
-$ sudo apt install -y build-essential git ninja-build meson libboost-all-dev xutils-dev bison zlib1g-dev flex libglu1-mesa-dev libxi-dev libxmu-dev libdrm-dev llvm libelf-dev libwayland-dev wayland-protocols libwayland-egl-backend-dev libxcb-glx0-dev libxcb-shm0-dev libx11-xcb-dev libxcb-dri2-0-dev libxcb-dri3-dev libxcb-present-dev libxshmfence-dev libxxf86vm-dev libxrandr-dev libglm-dev libelf-dev
+$ sudo apt install -y build-essential git ninja-build meson libboost-all-dev xutils-dev bison zlib1g-dev flex libglu1-mesa-dev libxi-dev libxmu-dev libdrm-dev libelf-dev libwayland-dev wayland-protocols libwayland-egl-backend-dev libxcb-glx0-dev libxcb-shm0-dev libx11-xcb-dev libxcb-dri2-0-dev libxcb-dri3-dev libxcb-present-dev libxshmfence-dev libxxf86vm-dev libxrandr-dev libglm-dev libelf-dev
 ```
+For llvm, need older version
+
+```bash
+sudo apt-get install llvm-11 llvm-11-dev llvm-11-tools
+```
+
+
 
 Download and decompress the source codes: [https://zenodo.org/records/12803388](https://zenodo.org/records/12803388)
 
@@ -59,7 +66,7 @@ Build the Simulator within the Docker (from the crisp-framework folder):
 ```bash
 $ docker run -it --rm -v $(pwd)/accel-sim-framework:/accel-sim/accel-sim-framework tgrogers/accel-sim_regress:Ubuntu-22.04-cuda-11.7
 $ cd accel-sim-framework
-$ source gpu_simulator/setup_environment
+$ source gpu_simulator/setup_environment.sh
 $ make -j -C ./gpu-simulator
 $ exit
 ```
@@ -70,6 +77,12 @@ Finally, copy files `gpgpusim.config` and `config_turing_islip.icnt` from the cr
 
 To run the simulation:
 
+Download the traces file outside docker:
+```bash
+cd accel-sim-framework
+curl https://zenodo.org/records/13287587/files/spl_vio.tar.gz?download=1 --output spl_vio.tar.gz
+```
+run simulations
 ```bash
 $ docker run -it --rm -v $(pwd)/accel-sim-framework:/accel-sim/accel-sim-framework tgrogers/accel-sim_regress:Ubuntu-22.04-cuda-11.7
 $ cd accel-sim-framework
