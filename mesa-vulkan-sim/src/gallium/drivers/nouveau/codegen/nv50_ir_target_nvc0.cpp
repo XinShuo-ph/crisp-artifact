@@ -40,6 +40,8 @@ TargetNVC0::TargetNVC0(unsigned int card) :
 
 // lazyness -> will just hardcode everything for the time being
 
+// lib is missing, see https://gitlab.freedesktop.org/mesa/mesa/-/tree/21.1/src/gallium/drivers/nouveau/codegen?ref_type=heads
+
 #include "lib/gf100.asm.h"
 #include "lib/gk104.asm.h"
 #include "lib/gk110.asm.h"

@@ -66,7 +66,11 @@ bool ac_is_sgpr_param(LLVMValueRef arg)
    llvm::Argument *A = llvm::unwrap<llvm::Argument>(arg);
    llvm::AttributeList AS = A->getParent()->getAttributes();
    unsigned ArgNo = A->getArgNo();
-   return AS.hasAttribute(ArgNo + 1, llvm::Attribute::InReg);
+   return AS.hasAttribute(ArgNo + 1, llvm::Attribute::InReg); 
+   // refer to https://gitlab.freedesktop.org/mesa/mesa/-/commit/09cf2584bdf2184a67115b4e36038bba9f3e0ff1   
+   // either use the changed function after llvm13 below, or install llvm 11 instead
+   // return AS.hasParamAttr(ArgNo, llvm::Attribute::InReg);
+
 }
 
 LLVMValueRef ac_llvm_get_called_value(LLVMValueRef call)

@@ -4,6 +4,8 @@
 build
 build-release
 .vscode
-lib
+lib 
+# this would ignore the necessary mesa-vulkan-sim/src/gallium/drivers/nouveau/codegen/lib directory, add it back
+!mesa-vulkan-sim/src/gallium/drivers/nouveau/codegen/lib
 gpgpusimShaders
 gpgpusimShaders copy
