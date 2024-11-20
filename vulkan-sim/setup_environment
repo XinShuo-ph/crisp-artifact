@@ -6,7 +6,8 @@ export GPGPUSIM_SETUP_ENVIRONMENT_WAS_RUN=
 export GPGPUSIM_ROOT="$( cd "$( dirname "$BASH_SOURCE" )" && pwd )"
 
 export MESA_ROOT=$GPGPUSIM_ROOT/../mesa-vulkan-sim/
-export VK_ICD_FILENAMES=$GPGPUSIM_ROOT/../mesa-vulkan-sim/lib/share/vulkan/icd.d/intel_icd.x86_64.json
+# export VK_ICD_FILENAMES=$GPGPUSIM_ROOT/../mesa-vulkan-sim/lib/share/vulkan/icd.d/intel_icd.x86_64.json
+export VK_ICD_FILENAMES=$GPGPUSIM_ROOT/../mesa-vulkan-sim/lib/share/vulkan/icd.d/lvp_icd.x86_64.json
 source $GPGPUSIM_ROOT/../embree-3.13.5.x86_64.linux/embree-vars.sh
 
 GPGPUSIM_VERSION_STRING=`cat $GPGPUSIM_ROOT/version | awk '/Version/ {print $8}'`

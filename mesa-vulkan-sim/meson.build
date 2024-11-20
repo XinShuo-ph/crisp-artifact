@@ -250,7 +250,8 @@ _vulkan_drivers = get_option('vulkan-drivers')
 if _vulkan_drivers.contains('auto')
   if system_has_kms_drm
     if host_machine.cpu_family().startswith('x86')
-      _vulkan_drivers = ['amd', 'intel', 'swrast']
+      # _vulkan_drivers = ['amd', 'intel', 'swrast']
+      _vulkan_drivers = ['amd', 'swrast']
     elif ['arm', 'aarch64'].contains(host_machine.cpu_family())
       _vulkan_drivers = ['swrast']
     elif ['mips', 'mips64'].contains(host_machine.cpu_family())

@@ -30,7 +30,10 @@ For llvm, need older version
 sudo apt-get install llvm-11 llvm-11-dev llvm-11-tools
 ```
 
-
+need mako in python
+```bash
+pip install mako
+```
 
 Download and decompress the source codes: [https://zenodo.org/records/12803388](https://zenodo.org/records/12803388)
 
@@ -44,7 +47,7 @@ Next, set up environments:
 
 ```bash
 $ export CUDA_INSTALL_PATH=/usr/local/cuda
-$ cd crisp-framework
+$ cd crisp-artifact
 $ source vulkan-sim/setup_environment
 ```
 
@@ -53,20 +56,21 @@ Build the tracer. Please ignore the error in the first ninja build:
 ```bash
 $ cd mesa-vulkan-sim
 $ meson --prefix="${PWD}/lib" build/
-$ meson configure build/ -Dbuildtype=debug -D b_lundef=false
+$ meson configure build/ -Dbuildtype=debug -D b_lundef=false -Dgallium-drivers=swrast
 $ ninja -C build/ install
 $ cd ../vulkan-sim/
 $ make -j
 $ cd ../mesa-vulkan-sim
 $ ninja -C build/ install
 ```
+Note that `ninja -C build/ install` may report errors relatted to flag '-lcudart', we can manually correct it adding ` -L/usr/local/cuda/lib64` after the 2 appearance of `-lcudart` in file `mesa-vulkan-sim/build/build.ninja`
 
 Build the Simulator within the Docker (from the crisp-framework folder):
 
 ```bash
 $ docker run -it --rm -v $(pwd)/accel-sim-framework:/accel-sim/accel-sim-framework tgrogers/accel-sim_regress:Ubuntu-22.04-cuda-11.7
 $ cd accel-sim-framework
-$ source gpu_simulator/setup_environment.sh
+$ source gpu-simulator/setup_environment.sh
 $ make -j -C ./gpu-simulator
 $ exit
 ```
@@ -81,6 +85,7 @@ Download the traces file outside docker:
 ```bash
 cd accel-sim-framework
 curl https://zenodo.org/records/13287587/files/spl_vio.tar.gz?download=1 --output spl_vio.tar.gz
+cd ..
 ```
 run simulations
 ```bash
