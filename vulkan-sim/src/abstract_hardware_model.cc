@@ -3252,6 +3252,8 @@ void core_t::execute_warp_inst_t(warp_inst_t &inst, unsigned warpId) {
         sass << "I2F";
       } else if (to_type == U32_TYPE && from_type == F32_TYPE) {
         sass << "F2I";
+      } else if (to_type == S32_TYPE && from_type == F32_TYPE) {
+        sass << "F2I";
       } else if (to_type == U32_TYPE && from_type == S32_TYPE) {
         sass << "I2I";
       } else if (to_type == U32_TYPE && from_type == U32_TYPE) {

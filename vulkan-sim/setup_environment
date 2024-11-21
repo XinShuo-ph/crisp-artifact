@@ -5,6 +5,8 @@ ps -p $$ | awk '/bash/ || / sh/ || /zsh/ {exit 1;}' && echo "WARNING ** source s
 export GPGPUSIM_SETUP_ENVIRONMENT_WAS_RUN=
 export GPGPUSIM_ROOT="$( cd "$( dirname "$BASH_SOURCE" )" && pwd )"
 
+xport LD_LIBRARY_PATH=$GPGPUSIM_ROOT/lib/gcc-9.4.0/cuda-11040/release:$LD_LIBRARY_PATH
+
 export MESA_ROOT=$GPGPUSIM_ROOT/../mesa-vulkan-sim/
 export VK_ICD_FILENAMES=$GPGPUSIM_ROOT/../mesa-vulkan-sim/lib/share/vulkan/icd.d/intel_icd.x86_64.json
 source $GPGPUSIM_ROOT/../embree-3.13.5.x86_64.linux/embree-vars.sh
